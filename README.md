@@ -1,16 +1,33 @@
 # our_market
 
-A new Flutter project.
+🛒 Flutter E-Commerce App
 
-## Getting Started
+An open-source e-commerce mobile application built with Flutter.
+This app provides essential features of an online store such as browsing products, managing cart, checkout, and user authentication.
+🚀 Features
 
-This project is a starting point for a Flutter application.
+🔐 Authentication – Sign up, log in, log out (Supabase/Auth API ready).
 
-A few resources to get you started if this is your first Flutter project:
+🛍 Product Catalog – Browse product list and categories.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+🛒 Shopping Cart – Add, remove, update items.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+💳 Checkout Process – Place orders with payment integration ready.
+
+📦 Order History – View past purchases.
+
+🌐 Localization – Multi-language support.
+
+🎨 Clean UI/UX – Built with Material Design.
+
+🛠 Tech Stack
+
+Framework: Flutter
+
+State Management: Cubit / Riverpod / Bloc
+
+Backend: Firebase / REST API / Sipabase
+
+Database: Hive / SQLite / Firebase Firestore /supabase
+
+Payment Gateway: Stripe / PayPal
