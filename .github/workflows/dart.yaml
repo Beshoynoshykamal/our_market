@@ -5,31 +5,36 @@ on:
 
 jobs:
   build-ios:
-    runs-on: macos-latest
+    runs-on: macos-15
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: flutter pub get
 
-      - name: Pod Install
+      - name: Pod install
         working-directory: ios
         run: pod install --repo-update
 
       - name: Build iOS (unsigned XCArchive)
         run: |
           flutter build ios --release --no-codesign
-          xcodebuild -workspace ios/Runner.xcworkspace \
+          xcodebuild \
+            -workspace ios/Runner.xcworkspace \
             -scheme Runner \
             -configuration Release \
             -sdk iphoneos \
             -archivePath build/ios/archive/Runner.xcarchive \
-            archive CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGNING_IDENTITY=""
+            archive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_IDENTITY=""
 
       - name: Create unsigned IPA
         run: |
@@ -38,10 +43,11 @@ jobs:
           cd build/ios/ipa
           zip -r unsigned.ipa Payload
 
-      - name: Upload IPA
-        uses: actions/upload-artifact@v3
+      - name: Upload unsigned IPA   # ⭐ UPDATED ACTION VERSION
+        uses: actions/upload-artifact@v4
         with:
           name: unsigned-ipa
           path: build/ios/ipa/unsigned.ipa
+
 
 
